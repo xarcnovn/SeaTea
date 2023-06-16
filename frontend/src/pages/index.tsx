@@ -1,6 +1,7 @@
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { AccessibilityBar } from '@/components/AccessibilityBar'
+import { Calculator } from '@/components/calculator/Calculator'
 
 export default function HomePage() {
   return (
@@ -18,10 +19,20 @@ export default function HomePage() {
         </Container>
       </section>
       <section className="py-16 px-8">
-        <Container>Czym jest Biotope Area Factor?</Container>
+        <Container>
+          <h2 className="text-3xl font-bold">Wpisz numer działki</h2>
+        </Container>
       </section>
       <section className="py-16 px-8">
-        <Container>Wpisz adres działki</Container>
+        <Container>
+          <h2 className="text-3xl font-bold mb-4">Kalkulator</h2>
+          <Calculator />
+        </Container>
+      </section>
+      <section className="py-16 px-8">
+        <Container>
+          <h2 className="text-3xl font-bold">Zainspiruj się</h2>
+        </Container>
       </section>
       <footer className="py-16 px-8">
         <Container>Stopka</Container>
