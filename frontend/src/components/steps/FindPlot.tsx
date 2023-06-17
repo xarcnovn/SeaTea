@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState } from 'react'
 import { Input } from '../Input'
 import { Button } from '@/components/Button'
@@ -8,9 +9,9 @@ export const FindPlot = () => {
   // 246501_1.0020.5801
 
   const handleAreaIdSubmit = async () => {
-    const data = await fetch(
-      `https://4ab6-148-81-191-8.ngrok-free.app/plot_area/id/${plotAreaId}`
-    ).then(res => res.json())
+    const data = await axios.get(
+      'https://7d6b-148-81-191-8.ngrok-free.app/plot_area/id/asdasda'
+    )
     console.log(data)
   }
 
