@@ -6,9 +6,15 @@ import requests
 from flask import Blueprint, jsonify, request, send_file
 import subprocess
 from PIL import Image
+from flask_cors import cross_origin
 
 bafalize_bp = Blueprint("bafalize", __name__)
 
+
+baf_prompt = "european city with a lot of grass, trees, realistic, photograph, ecological-friendly, lush, flowers." \
+             "grass and flowers grow on roofs and balconies. asphalt or brick streets are separated from buildings " \
+             "with green areas. Wooden benches, harmony. Gray asphalt roads, intersections and pavements. Original buildings " \
+             "and roads colors and outline"
 
 medium_baf_prompt = \
     'The photography captures a vibrant urban oasis nestled in the heart of a Central European city. ' \
@@ -22,10 +28,11 @@ medium_baf_prompt = \
     'share the well-maintained roads, contributing to the vibrant and eco-friendly atmosphere of the city.'
 
 
-negative_prompt =  "oversaturated, low contrast, underexposed, overexposed, lowres, low quality, people, pets, " \
+negative_prompt =  "oversaturated, low contrast, underexposed, overexposed, lowres, low quality, people, pets, cars, " \
                    "animals, solid background, plain background, asymmetrical buildings, jpeg artifacts, close-up, " \
                    "macro, surreal, multiple views, multiple angles, creepy, scary, blurry, grainy, unreal sky, " \
-                   "weird colors, deformed structures"
+                   "weird colors, deformed structures, grass street, green street, unrealistic, bright buildings, blue buildings, " \
+                   "pink buildings"
 
 # A1111 URL
 url = "http://127.0.0.1:7860"
@@ -35,11 +42,9 @@ sd_script = './webui.sh'
 sd_options = '--skip-torch-cuda-test --precision full --no-half --api'
 
 
-
-# A1111 payload
 def_payload = {
     "init_images": [""],
-    "prompt": medium_baf_prompt,
+    "prompt": baf_prompt,
     "negative_prompt": negative_prompt,
     "batch_size": 1,
     "steps": 20,
@@ -63,26 +68,20 @@ def fill_payload(prompt, image):
     new_payload["prompt"] = prompt
 
     image = cv2.imread("api_img.jpg", cv2.IMREAD_COLOR)
-    # Encode into PNG and send to ControlNet
     retval, bytes = cv2.imencode('.png', image)
     encoded_image = base64.b64encode(bytes).decode('utf-8')
 
-
-    init = cv2.imread("init_img.jpg", cv2.IMREAD_COLOR)
+    init = cv2.imread("input_3.png", cv2.IMREAD_COLOR)
     retval, bytes = cv2.imencode('.png', init)
     init_encoded_image = base64.b64encode(bytes).decode('utf-8')
 
-    init2 = cv2.imread("init_img2.jpg", cv2.IMREAD_COLOR)
-    retval, bytes = cv2.imencode('.png', init2)
-    init2_encoded_image = base64.b64encode(bytes).decode('utf-8')
-
     new_payload["alwayson_scripts"]["controlnet"]["args"][0]["input_image"] = encoded_image
     new_payload["init_images"][0] = init_encoded_image
-    new_payload["init_images"][1] = init2_encoded_image
     return new_payload
 
 
 @bafalize_bp.route('/bafalize', methods=['POST'])
+@cross_origin()
 def bafalize_img():
     if 'file' in request.files:
         img = request.files['file']

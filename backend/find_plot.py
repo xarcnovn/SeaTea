@@ -1,5 +1,6 @@
 from qgis.core import QgsVectorLayer
 from flask import Blueprint, jsonify, request
+from flask_cors import cross_origin
 
 plot_bp = Blueprint("plots", __name__)
 
@@ -8,6 +9,7 @@ address_layer_file = '../../gis_data/address/PRG_PunktyAdresowe_246501.shp'
 
 
 @plot_bp.route('/plot_area/id/<plot_id>', methods=['GET'])
+@cross_origin()
 def get_plot_area_by_id(plot_id):
     if request.method == 'GET':
         # Load the hood layer
@@ -25,10 +27,14 @@ def get_plot_area_by_id(plot_id):
                 print("area: ", area)
                 return jsonify({'area': area}), 200
 
-        return jsonify({'message': 'Plot not found'}), 400
+        response = jsonify({'message': 'Plot not found', 'options_passthrough': False})
+        #response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('ngrok-skip-browser-warning', "true")
+        return response, 404
 
 
 @plot_bp.route('/plot_address/address', methods=['GET'])
+@cross_origin()
 def get_plot_area_by_address():
     if request.method == 'GET':
         ulica = request.json.get('street')
