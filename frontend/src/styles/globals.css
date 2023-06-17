@@ -1,7 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-    @apply text-gray-900 bg-white;
+    @apply text-gray-600 bg-white;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.bg-main {
+    background-image: url("../assets/main.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-lines {
+    background-image: url("../assets/lines.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-find-plot {
+    background-image: url("../assets/find-plot.png");
+    background-size: cover;
+    background-position: center;
 }

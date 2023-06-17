@@ -3,16 +3,15 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-    },
+        'gradient-custom':
+          'linear-gradient(180deg, rgba(122, 181, 114, 0.64) 0%, rgba(86, 166, 63, 0.04) 100%)'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }
