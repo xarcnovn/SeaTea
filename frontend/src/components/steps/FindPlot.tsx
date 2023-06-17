@@ -10,7 +10,7 @@ export const FindPlot = () => {
 
   const handleAreaIdSubmit = async () => {
     const data = await axios.get(
-      'https://7d6b-148-81-191-8.ngrok-free.app/plot_area/id/asdasda'
+      'http://localhost:5000/plot_area/id/9282'
     )
     console.log('=>', data)
   }

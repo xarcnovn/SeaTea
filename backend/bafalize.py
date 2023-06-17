@@ -14,7 +14,9 @@ bafalize_bp = Blueprint("bafalize", __name__)
 baf_prompt = "european city with a lot of grass, trees, realistic, photograph, ecological-friendly, lush, flowers." \
              "grass and flowers grow on roofs and balconies. asphalt or brick streets are separated from buildings " \
              "with green areas. Wooden benches, harmony. Gray asphalt roads, intersections and pavements. Original buildings " \
-             "and roads colors and outline"
+             "and roads colors and outline. There is space on the gray road for cars. Narrow but middle high bushes and plants stripes." \
+             "flowers between grass. keep original road signs and buildings, don't generate new, HDR, high detail, photorealistic," \
+             "realistic, 4k, award, sharp focus, high resolution, high quality"
 
 medium_baf_prompt = \
     'The photography captures a vibrant urban oasis nestled in the heart of a Central European city. ' \
@@ -32,7 +34,8 @@ negative_prompt =  "oversaturated, low contrast, underexposed, overexposed, lowr
                    "animals, solid background, plain background, asymmetrical buildings, jpeg artifacts, close-up, " \
                    "macro, surreal, multiple views, multiple angles, creepy, scary, blurry, grainy, unreal sky, " \
                    "weird colors, deformed structures, grass street, green street, unrealistic, bright buildings, blue buildings, " \
-                   "pink buildings"
+                   "pink building, temple, arch, ancient architecture, skyscraper, glass and concrete building, dome," \
+                   "lake, pond, river, puddle"
 
 # A1111 URL
 url = "http://127.0.0.1:7860"
