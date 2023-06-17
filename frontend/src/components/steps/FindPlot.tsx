@@ -12,7 +12,7 @@ export const FindPlot = () => {
     const data = await axios.get(
       'https://7d6b-148-81-191-8.ngrok-free.app/plot_area/id/asdasda'
     )
-    console.log(data)
+    console.log('=>', data)
   }
 
   return (
