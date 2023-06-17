@@ -18,12 +18,11 @@ medium_baf_prompt = \
     'rhododendrons, azaleas, and blueberry bushes. The parks are interconnected by well-paved walking paths, inviting ' \
     'residents and visitors to enjoy a leisurely stroll. Colorful wildflowers such as lupines, coneflowers, ' \
     'and black-eyed Susans bloom alongside the paths, attracting the admiration of passersby. Quaint wooden benches ' \
-    'and charming fountains provide spots for relaxation amidst the verdant landscape. The scene is dotted with cafes ' \
-    'and outdoor seating areas, where locals savor coffee or engage in animated conversations. Bicycles and pedestrians ' \
+    'and charming fountains provide spots for relaxation amidst the verdant landscape. Bicycles and pedestrians ' \
     'share the well-maintained roads, contributing to the vibrant and eco-friendly atmosphere of the city.'
 
 
-negative_prompt =  "oversaturated, low contrast, underexposed, overexposed, lowres, low quality, people, pets, cars, " \
+negative_prompt =  "oversaturated, low contrast, underexposed, overexposed, lowres, low quality, people, pets, " \
                    "animals, solid background, plain background, asymmetrical buildings, jpeg artifacts, close-up, " \
                    "macro, surreal, multiple views, multiple angles, creepy, scary, blurry, grainy, unreal sky, " \
                    "weird colors, deformed structures"
@@ -73,8 +72,13 @@ def fill_payload(prompt, image):
     retval, bytes = cv2.imencode('.png', init)
     init_encoded_image = base64.b64encode(bytes).decode('utf-8')
 
+    init2 = cv2.imread("init_img2.jpg", cv2.IMREAD_COLOR)
+    retval, bytes = cv2.imencode('.png', init2)
+    init2_encoded_image = base64.b64encode(bytes).decode('utf-8')
+
     new_payload["alwayson_scripts"]["controlnet"]["args"][0]["input_image"] = encoded_image
     new_payload["init_images"][0] = init_encoded_image
+    new_payload["init_images"][1] = init2_encoded_image
     return new_payload
 
 
