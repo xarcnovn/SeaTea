@@ -4,7 +4,7 @@ import { UserCircleIcon } from '@heroicons/react/24/outline'
 
 export const Navbar = () => {
   return (
-    <nav className="bg-white flex items-center py-4 fixed top-0 left-0 right-0 px-16 border-b shadow">
+    <nav className="bg-white flex items-center py-4 fixed top-0 left-0 right-0 px-16 border-b shadow z-10">
       <Logo />
       <div className="ml-1">
         <p className="font-semibold leading-4">Bafalizer</p>
