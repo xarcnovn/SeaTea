@@ -42,7 +42,7 @@ url = "http://127.0.0.1:7860"
 
 sd_path = '../../stable-diffusion-webui'
 sd_script = './webui.sh'
-sd_options = '--skip-torch-cuda-test --precision full --no-half --api'
+sd_options = ' --skip-torch-cuda-test --precision full --no-half --api'
 
 
 def_payload = {
@@ -51,6 +51,8 @@ def_payload = {
     "negative_prompt": negative_prompt,
     "batch_size": 1,
     "steps": 20,
+    "height": 1024,
+    "width": 1024,
     "cfg_scale": 7,
     "alwayson_scripts": {
         "controlnet": {
@@ -66,7 +68,7 @@ def_payload = {
 }
 
 
-def fill_payload(prompt, image):
+def fill_payload(prompt):
     new_payload = def_payload
     new_payload["prompt"] = prompt
 
@@ -74,7 +76,7 @@ def fill_payload(prompt, image):
     retval, bytes = cv2.imencode('.png', image)
     encoded_image = base64.b64encode(bytes).decode('utf-8')
 
-    init = cv2.imread("input_3.png", cv2.IMREAD_COLOR)
+    init = cv2.imread("SD_input.jpg", cv2.IMREAD_COLOR)
     retval, bytes = cv2.imencode('.png', init)
     init_encoded_image = base64.b64encode(bytes).decode('utf-8')
 
@@ -91,9 +93,7 @@ def bafalize_img():
 
         img.save("api_img.jpg")
 
-        payload = fill_payload(medium_baf_prompt, img)
-
-        # Trigger Generation
+        payload = fill_payload(medium_baf_prompt)
         response = requests.post(url=f'{url}/sdapi/v1/img2img', json=payload)
 
         # Read results
@@ -109,8 +109,8 @@ def bafalize_img():
 
 os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = '/usr/lib/x86_64-linux-gnu/qt5/plugins'
 
-cmd = 'gnome-terminal -- bash -c \"' + 'cd ' + sd_path + '&& ' + sd_script + sd_options + '\"'
+cmd = 'gnome-terminal -- bash -c \"' + 'cd ' + sd_path + ' && ' + sd_script + sd_options + '\"'
 
 
-def start_sd() -> object:
+def start_sd():
     subprocess.Popen(cmd, shell=True)
