@@ -6,6 +6,7 @@ import { TabInput } from '@/components/TabInput'
 import { classNames } from '@/helpers/classNames'
 import { Button } from '@/components/Button'
 import { ArrowDownRightIcon } from '@heroicons/react/20/solid'
+import { Navbar } from '@/components/Navbar'
 
 const indicators = {
   asphalt: 0,
@@ -199,7 +200,8 @@ export default function CalculateBaf() {
   console.log(baf)
 
   return (
-    <div className="flex">
+    <div className="flex pt-[73px]">
+      <Navbar />
       {activeStepIndex === 0 ? (
         <>
           <div className="w-1/2 bg-lines min-h-screen py-24 px-16">
