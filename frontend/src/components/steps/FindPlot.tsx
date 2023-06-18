@@ -31,12 +31,14 @@ export const FindPlot = ({
      * */
 
     const result = await axios.get<{ area: number }>(
-      `http://localhost:5000/plot_area/id/asdasda`
+      `http://localhost:5000/plot_area/id/${plotAreaId}`
     )
     const data = Number(result.data.area.toFixed(2))
     onPlotAreaChange(data)
     onNext()
   }
+
+  console.log(plotAreaId)
 
   return (
     <div>
@@ -56,24 +58,21 @@ export const FindPlot = ({
           />
           <div className="flex gap-6 mb-8">
             <Input
-              value={plotAreaId}
-              onChange={e => setPlotAreaId(e.target.value)}
-            >
-              Number działki
-            </Input>
-            <Input
               value={precinctId}
               onChange={e => setPrecinctId(e.target.value)}
             >
               Number obrębu
             </Input>
+            <Input
+              value={plotAreaId}
+              onChange={e => setPlotAreaId(e.target.value)}
+            >
+              Number działki
+            </Input>
           </div>
         </div>
         <Button
-          onClick={() => {
-            onPlotAreaChange(132)
-            onNext()
-          }}
+          onClick={handleAreaIdSubmit}
         >
           Dalej
         </Button>
