@@ -45,13 +45,20 @@ export const FindPlot = ({
             onChange={onPlotTypeChange}
             options={plotTypes}
           />
-          <Input
-            value={plotAreaId}
-            onChange={e => setPlotAreaId(e.target.value)}
-            className="mb-8"
-          >
-            Adres lub numer działki
-          </Input>
+          <div className="flex gap-6 mb-8">
+            <Input
+              value={plotAreaId}
+              onChange={e => setPlotAreaId(e.target.value)}
+            >
+              Number działki
+            </Input>
+            <Input
+              value={plotAreaId}
+              onChange={e => setPlotAreaId(e.target.value)}
+            >
+              Number obrębu
+            </Input>
+          </div>
         </div>
         <Button
           onClick={() => {
