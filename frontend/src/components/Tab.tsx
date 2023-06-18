@@ -19,8 +19,6 @@ export const Tab = ({
   colorClass,
   onClick
 }: TabProps) => {
-  // if (!isOpen) return null
-
   return (
     <div>
       <div
@@ -32,7 +30,10 @@ export const Tab = ({
       >
         <p className="text-lg font-semibold">{name}</p>
         <p className="ml-auto font-semibold">
-          {area} <span className="font-normal">m</span>
+          {area}{' '}
+          <span className="font-normal inline-flex">
+            m<span className="text-[10px]">2</span>
+          </span>
         </p>
         <ChevronDownIcon
           className={classNames(

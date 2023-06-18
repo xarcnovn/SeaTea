@@ -21,7 +21,9 @@ export const TabInput = ({
         <img src="tab-input.png" />
       </div>
       <div className="col-span-4 flex items-center relative">
-        <span className="absolute right-4">m</span>
+        <p className="absolute right-4 inline-flex">
+          m<span className="text-[10px]">2</span>
+        </p>
         <input
           className="py-2 pl-4 pr-8 w-full border border-gray-400 rounded-md text-right font-semibold"
           value={value}

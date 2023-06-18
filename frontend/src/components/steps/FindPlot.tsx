@@ -13,7 +13,7 @@ type FindPlotProps = {
   onPlotAreaChange: (plotArea: number) => void
 }
 
-// 246501_1.0020.5801
+// przykladowa dzialka: 5801
 
 export const FindPlot = ({
   onPlotTypeChange,
@@ -27,7 +27,7 @@ export const FindPlot = ({
   const handleAreaIdSubmit = async () => {
     /*
      * Normalnie zrobilbym tutaj try/catch oraz obsluzyl ladowanie sie danych
-     * lub ewentualne bledy, moze react-query
+     * lub ewentualne bledy, moze react-query, jakies walidacje itp.
      * */
 
     const result = await axios.get<{ area: number }>(
@@ -71,11 +71,7 @@ export const FindPlot = ({
             </Input>
           </div>
         </div>
-        <Button
-          onClick={handleAreaIdSubmit}
-        >
-          Dalej
-        </Button>
+        <Button onClick={handleAreaIdSubmit}>Dalej</Button>
       </div>
     </div>
   )
