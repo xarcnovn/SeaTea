@@ -12,6 +12,9 @@ cors = CORS(app, origins='*',  methods=['GET', 'POST'],  headers=['Content-Type'
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
+# TODO: endpoint+db for calculator categories
+
+
 def init_qgis():
     QgsApplication.setPrefixPath('/usr/bin/qgis', True)
     qgs = QgsApplication([], False)

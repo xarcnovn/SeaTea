@@ -3,7 +3,9 @@ from flask import Blueprint, jsonify, request
 from flask_cors import cross_origin
 
 plot_bp = Blueprint("plots", __name__)
+# TODO: response codes
 
+# TODO: move paths to a config. Use default names from GIS
 plot_layer_file = '../../gis_data/plots/plots.shp'
 address_layer_file = '../../gis_data/address/PRG_PunktyAdresowe_246501.shp'
 

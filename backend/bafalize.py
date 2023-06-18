@@ -8,8 +8,9 @@ import subprocess
 from PIL import Image
 from flask_cors import cross_origin
 
-bafalize_bp = Blueprint("bafalize", __name__)
+# TODO: polish prompts and provide reasonable way to edit them
 
+bafalize_bp = Blueprint("bafalize", __name__)
 
 baf_prompt = "european city with a lot of grass, trees, realistic, photograph, ecological-friendly, lush, flowers." \
              "grass and flowers grow on roofs and balconies. asphalt or brick streets are separated from buildings " \
@@ -45,6 +46,7 @@ sd_script = './webui.sh'
 sd_options = ' --skip-torch-cuda-test --precision full --no-half --api'
 
 
+# TODO: check the keys of other switches
 def_payload = {
     "init_images": [""],
     "prompt": baf_prompt,
@@ -107,8 +109,8 @@ def bafalize_img():
         return jsonify({'message': 'no image'}), 400
 
 
+# TODO: allow qt5 detection or path changing
 os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = '/usr/lib/x86_64-linux-gnu/qt5/plugins'
-
 cmd = 'gnome-terminal -- bash -c \"' + 'cd ' + sd_path + ' && ' + sd_script + sd_options + '\"'
 
 
