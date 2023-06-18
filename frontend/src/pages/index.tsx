@@ -5,7 +5,7 @@ export default function HomePage() {
     <main>
       <div className="flex">
         <div className="w-1/2 bg-main min-h-screen" />
-        <div className="w-1/2 bg-lines p-16">
+        <div className="w-1/2 p-16">
           <h1 className="text-4xl font-bold mb-24">Kalkulator BAF</h1>
           <h2 className="text-xl font-bold">Czym jest BAF?</h2>
           <p>

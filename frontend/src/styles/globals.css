@@ -15,12 +15,6 @@ html {
     background-position: center;
 }
 
-.bg-lines {
-    background-image: url("../assets/lines.jpeg");
-    background-size: cover;
-    background-position: center;
-}
-
 .bg-find-plot {
     background-image: url("../assets/find-plot.png");
     background-size: cover;

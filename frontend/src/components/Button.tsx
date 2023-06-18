@@ -10,7 +10,7 @@ type ButtonProps = {
 }
 
 const buttonVariants = {
-  primary: 'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600',
+  primary: 'bg-gray-600 hover:bg-gray-500 focus-visible:outline-gray-600',
   secondary: 'bg-gray-200 hover:bg-gray-300 focus-visible:outline-gray-600',
   delete: 'bg-red-600 hover:bg-red-500 focus-visible:outline-red-600'
 }
@@ -29,7 +29,7 @@ export const Button = ({
       <a
         href={disabled ? '#' : href}
         className={classNames(
-          'rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+          'rounded-md px-6 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
           buttonVariants[variant],
           disabled ? 'opacity-50 cursor-not-allowed' : ''
         )}
@@ -43,7 +43,7 @@ export const Button = ({
       <button
         type={type}
         className={classNames(
-          'rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+          'rounded-md px-6 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
           buttonVariants[variant],
           disabled ? 'opacity-50 cursor-not-allowed pointer-event-none' : ''
         )}
