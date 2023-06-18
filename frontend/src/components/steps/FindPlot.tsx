@@ -22,11 +22,20 @@ export const FindPlot = ({
   onNext
 }: FindPlotProps) => {
   const [plotAreaId, setPlotAreaId] = useState('')
+  const [precinctId, setPrecinctId] = useState('')
 
   const handleAreaIdSubmit = async () => {
-    // const data = await axios.get(
-    //   'https://147a-148-81-191-8.ngrok-free.app/plot_area/id/asdasda'
-    // )
+    /*
+     * Normalnie zrobilbym tutaj try/catch oraz obsluzyl ladowanie sie danych
+     * lub ewentualne bledy, moze react-query
+     * */
+
+    const result = await axios.get<{ area: number }>(
+      `http://localhost:5000/plot_area/id/asdasda`
+    )
+    const data = Number(result.data.area.toFixed(2))
+    onPlotAreaChange(data)
+    onNext()
   }
 
   return (
@@ -53,8 +62,8 @@ export const FindPlot = ({
               Number działki
             </Input>
             <Input
-              value={plotAreaId}
-              onChange={e => setPlotAreaId(e.target.value)}
+              value={precinctId}
+              onChange={e => setPrecinctId(e.target.value)}
             >
               Number obrębu
             </Input>

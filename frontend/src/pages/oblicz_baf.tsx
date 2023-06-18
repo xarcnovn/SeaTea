@@ -346,11 +346,14 @@ export default function CalculateBaf() {
           <div className="w-1/2 min-h-screen py-24 px-16">
             <div className="w-80 h-80 border-2 border-black flex flex-col-reverse">
               {Object.keys(bafValues).map(key => {
-                const height = ((bafValues[key] / plotArea) * 100).toFixed(2)
+                const height = (
+                  (bafValues[key as keyof typeof initialState] / plotArea) *
+                  100
+                ).toFixed(2)
                 return (
                   <div
                     key={key}
-                    className={colors[key]}
+                    className={colors[key as keyof typeof colors]}
                     style={{ height: `${height}%` }}
                   />
                 )
