@@ -42,15 +42,12 @@ export const FindPlot = ({
 
   return (
     <div>
-      <h2 className="text-4xl font-bold mb-8">Aplikacja</h2>
+      <h2 className="text-4xl font-bold mb-8">Znajdź swoją działkę</h2>
       <p className="mb-10">
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-        illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-        explicabo.
+        Wykorzystujemy Geoportal by znaleźć wymiary Twojej działki
       </p>
       <div className="max-w-sm">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           <Select
             value={plotType}
             onChange={onPlotTypeChange}
