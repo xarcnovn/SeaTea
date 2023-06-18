@@ -8,6 +8,32 @@ import { Button } from '@/components/Button'
 import { ArrowDownRightIcon } from '@heroicons/react/20/solid'
 import { Navbar } from '@/components/Navbar'
 
+const colors = {
+  asphalt: 'bg-gray-400',
+  concrete: 'bg-gray-400',
+  stone: 'bg-gray-400',
+
+  gravel: 'bg-amber-400',
+  concreteOpenworkSlab: 'bg-amber-400',
+  resinCombinedAggregate: 'bg-amber-400',
+  otherBulkMaterials: 'bg-amber-400',
+
+  mineralResinPaving: 'bg-yellow-400',
+  thistlePavingWithExpansionSpaces: 'bg-yellow-400',
+
+  geogrid: 'bg-blue-400',
+
+  development: 'bg-green-400',
+  tree: 'bg-green-400',
+  shrub: 'bg-green-400',
+  flowerMeadow: 'bg-green-400',
+  grass: 'bg-green-400',
+  greenRoofs: 'bg-green-400',
+  greenWalls: 'bg-green-400',
+  climbingPlants: 'bg-green-400',
+  rainGarden: 'bg-green-400'
+}
+
 const indicators = {
   asphalt: 0,
   concrete: 0,
@@ -197,7 +223,6 @@ export default function CalculateBaf() {
   }, 0)
 
   const baf = sum / plotArea
-  console.log(baf)
 
   return (
     <div className="flex pt-[73px]">
@@ -320,7 +345,16 @@ export default function CalculateBaf() {
           </div>
           <div className="w-1/2 min-h-screen py-24 px-16">
             <div className="w-80 h-80 border-2 border-black flex flex-col-reverse">
-              tutaj dane
+              {Object.keys(bafValues).map(key => {
+                const height = ((bafValues[key] / plotArea) * 100).toFixed(2)
+                return (
+                  <div
+                    key={key}
+                    className={colors[key]}
+                    style={{ height: `${height}%` }}
+                  />
+                )
+              })}
             </div>
             <span
               className={classNames(
