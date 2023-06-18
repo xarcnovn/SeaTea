@@ -1,11 +1,15 @@
 from flask import Flask
-from find_plot import plot_bp, init_once
+from find_plot import plot_bp
 from qgis.core import QgsApplication
 from bafalize import bafalize_bp, start_sd
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.register_blueprint(plot_bp)
 app.register_blueprint(bafalize_bp)
+cors = CORS(app, origins='*',  methods=['GET', 'POST'],  headers=['Content-Type'])
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 def init_qgis():
     # Initialize QGIS application
@@ -17,4 +21,4 @@ def init_qgis():
 if __name__ == '__main__':
     init_qgis()
     #start_sd()
-    app.run(debug=True)
+    app.run()
