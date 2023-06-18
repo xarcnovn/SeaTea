@@ -2,17 +2,31 @@ import axios from 'axios'
 import { useState } from 'react'
 import { Input } from '../Input'
 import { Button } from '@/components/Button'
+import { Select } from '@/components/Select'
+import { plotTypes } from '@/pages/oblicz_baf'
+import type { PlotType } from '@/pages/oblicz_baf'
 
-export const FindPlot = () => {
+type FindPlotProps = {
+  onPlotTypeChange: (plotType: PlotType) => void
+  plotType: PlotType | null
+  onNext: () => void
+  onPlotAreaChange: (plotArea: number) => void
+}
+
+// 246501_1.0020.5801
+
+export const FindPlot = ({
+  onPlotTypeChange,
+  onPlotAreaChange,
+  plotType,
+  onNext
+}: FindPlotProps) => {
   const [plotAreaId, setPlotAreaId] = useState('')
 
-  // 246501_1.0020.5801
-
   const handleAreaIdSubmit = async () => {
-    const data = await axios.get(
-      'https://7d6b-148-81-191-8.ngrok-free.app/plot_area/id/asdasda'
-    )
-    console.log('=>', data)
+    // const data = await axios.get(
+    //   'https://147a-148-81-191-8.ngrok-free.app/plot_area/id/asdasda'
+    // )
   }
 
   return (
@@ -25,20 +39,28 @@ export const FindPlot = () => {
         explicabo.
       </p>
       <div className="max-w-sm">
-        <Input>Wpisz adres</Input>
-        <div className="flex gap-2 items-center py-10">
-          <div className="h-[1px] bg-gray-500 w-full" />
-          <span className="font-bold">Lub</span>
-          <div className="h-[1px] bg-gray-500 w-full" />
+        <div className="flex flex-col gap-4">
+          <Select
+            value={plotType}
+            onChange={onPlotTypeChange}
+            options={plotTypes}
+          />
+          <Input
+            value={plotAreaId}
+            onChange={e => setPlotAreaId(e.target.value)}
+            className="mb-8"
+          >
+            Adres lub numer działki
+          </Input>
         </div>
-        <Input
-          value={plotAreaId}
-          onChange={e => setPlotAreaId(e.target.value)}
-          className="mb-8"
+        <Button
+          onClick={() => {
+            onPlotAreaChange(132)
+            onNext()
+          }}
         >
-          Wpisz numer działki
-        </Input>
-        <Button onClick={handleAreaIdSubmit}>Dalej</Button>
+          Dalej
+        </Button>
       </div>
     </div>
   )
