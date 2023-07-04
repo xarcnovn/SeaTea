@@ -1,12 +1,18 @@
+#import io
+#import os
+#import cv2
+#import base64
+#import requests
+#from flask import Blueprint, jsonify, request, send_file
+#import subprocess
+#from PIL import Image
+
 import io
 import os
-import cv2
 import base64
 import requests
 from flask import Blueprint, jsonify, request, send_file
-import subprocess
 from PIL import Image
-from flask_cors import cross_origin
 
 # TODO: polish prompts and provide reasonable way to edit them
 
@@ -74,21 +80,19 @@ def fill_payload(prompt):
     new_payload = def_payload
     new_payload["prompt"] = prompt
 
-    image = cv2.imread("api_img.jpg", cv2.IMREAD_COLOR)
-    retval, bytes = cv2.imencode('.png', image)
-    encoded_image = base64.b64encode(bytes).decode('utf-8')
+    with open("api_img.jpg", "rb") as image_file:
+        encoded_image = base64.b64encode(image_file.read()).decode('utf-8')
 
-    init = cv2.imread("SD_input.jpg", cv2.IMREAD_COLOR)
-    retval, bytes = cv2.imencode('.png', init)
-    init_encoded_image = base64.b64encode(bytes).decode('utf-8')
+    with open("SD_input.jpg", "rb") as init_file:
+        init_encoded_image = base64.b64encode(init_file.read()).decode('utf-8')
 
     new_payload["alwayson_scripts"]["controlnet"]["args"][0]["input_image"] = encoded_image
     new_payload["init_images"][0] = init_encoded_image
+
     return new_payload
 
 
 @bafalize_bp.route('/bafalize', methods=['POST'])
-@cross_origin()
 def bafalize_img():
     if 'file' in request.files:
         img = request.files['file']
@@ -102,7 +106,7 @@ def bafalize_img():
         r = response.json()
         result = r['images'][0]
         image = Image.open(io.BytesIO(base64.b64decode(result.split(",", 1)[0])))
-        image.save('output.png')
+        image.save('output.jpg', format='JPEG')
 
         return send_file('output.png', mimetype="image/jpeg")
     else:
@@ -110,9 +114,8 @@ def bafalize_img():
 
 
 # TODO: allow qt5 detection or path changing
-os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = '/usr/lib/x86_64-linux-gnu/qt5/plugins'
-cmd = 'gnome-terminal -- bash -c \"' + 'cd ' + sd_path + ' && ' + sd_script + sd_options + '\"'
+#os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = '/usr/lib/x86_64-linux-gnu/qt5/plugins'
+#cmd = 'gnome-terminal -- bash -c \"' + 'cd ' + sd_path + ' && ' + sd_script + sd_options + '\"'
 
-
-def start_sd():
-    subprocess.Popen(cmd, shell=True)
+#def start_sd():
+#    subprocess.Popen(cmd, shell=True)
