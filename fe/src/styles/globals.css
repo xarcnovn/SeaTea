@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::after, *::before {
+  @apply text-gray-600 focus:outline-gray-600
+}
+
+ol {
+  @apply list-decimal pl-4;
+}
