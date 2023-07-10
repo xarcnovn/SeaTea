@@ -45,7 +45,7 @@ negative_prompt =  "oversaturated, low contrast, underexposed, overexposed, lowr
                    "lake, pond, river, puddle"
 
 # A1111 URL
-url = "http://127.0.0.1:7860"
+url = "http://host.docker.internal:7860"
 
 sd_path = '../../stable-diffusion-webui'
 sd_script = './webui.sh'
@@ -108,7 +108,7 @@ def bafalize_img():
         image = Image.open(io.BytesIO(base64.b64decode(result.split(",", 1)[0])))
         image.save('output.jpg', format='JPEG')
 
-        return send_file('output.png', mimetype="image/jpeg")
+        return send_file('output.jpg', mimetype="image/jpeg")
     else:
         return jsonify({'message': 'no image'}), 400
 
