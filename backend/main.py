@@ -26,4 +26,4 @@ if __name__ == '__main__':
     init_qgis()
     #if not args.stop_run_sd:
     #    start_sd()
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5001)
