@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from find_plot import plot_bp
 from qgis.core import QgsApplication
 from bafalize import bafalize_bp#, start_sd
@@ -6,6 +7,7 @@ import argparse
 import os
 
 app = Flask(__name__)
+CORS(app)
 app.register_blueprint(plot_bp)
 app.register_blueprint(bafalize_bp)
 
