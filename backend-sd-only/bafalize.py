@@ -45,7 +45,7 @@ negative_prompt =  "oversaturated, low contrast, underexposed, overexposed, lowr
                    "lake, pond, river, puddle"
 
 # A1111 URL
-url = "http://host.docker.internal:7860"
+url = "http://localhost:7860"
 
 sd_path = '../../stable-diffusion-webui'
 sd_script = './webui.sh'

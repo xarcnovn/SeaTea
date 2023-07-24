@@ -39,7 +39,7 @@ export default function GetInspired() {
       formData.append('file', image)
       console.log(formData.get('file'))
 
-      await ky.post('http://localhost:5001/bafalize', {
+      await ky.post('http://localhost:5003/bafalize', {
         body: formData
       })
 
